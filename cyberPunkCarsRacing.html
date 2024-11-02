@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Punk Cars Racing</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #gameFrame {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            border: none;
+            display: block;
+        }
+
+        /* Optional: Button to trigger fullscreen mode */
+        #fullscreenButton {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            display: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <iframe src="https://www.crazygames.com/embed/cyber-cars-punk-racing" style="width: 100%; height: 100%;"
+        frameborder="0" allow="gamepad *;"></iframe>
+    <button id="fullscreenButton">Go Fullscreen</button>
+
+    <script>
+        function adjustIframeHeight() {
+            const vh = window.innerHeight;
+            document.getElementById('gameFrame').style.height = `${vh}px`;
+        }
+
+        // Adjust height on load and resize
+        window.addEventListener('load', adjustIframeHeight);
+        window.addEventListener('resize', adjustIframeHeight);
+
+        // Optional: Trigger fullscreen mode on user action
+        document.getElementById('fullscreenButton').addEventListener('click', () => {
+            const iframe = document.getElementById('gameFrame');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.webkitRequestFullscreen) { // for Safari
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // for IE11
+                iframe.msRequestFullscreen();
+            }
+        });
+
+        // Show fullscreen button on mobile
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            document.getElementById('fullscreenButton').style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>
